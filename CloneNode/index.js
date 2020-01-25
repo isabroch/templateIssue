@@ -3,30 +3,27 @@ const list = ['list1', 'list2', 'list3', 'list4',]
 const subList = ['sublist', 'sublist', 'sublist', 'sublist',]
 
 list.forEach(element => {
-    const template = document.querySelector('template')
-    const outerTemplate = template.content.cloneNode(true)
-    const li = outerTemplate.querySelector('li')
-    const ul = outerTemplate.querySelector('ul')
-    li.textContent = element
+    const outerTemplate = document.querySelector('.outerTemplate').content.cloneNode(true);
+    const outerItem = outerTemplate.querySelector('.outerItem');
+    const innerContainer = outerTemplate.querySelector('.innerContainer');
 
-    console.log(outerTemplate)
-    
+    outerItem.prepend(document.createTextNode(element));
+
     subList.forEach(element => {
-        const innerTemplate = outerTemplate.querySelector('template').content.cloneNode(true)
-        const li = innerTemplate.querySelector('li')
-        li.textContent = element
-        ul.appendChild(innerTemplate)
+        const innerTemplate = outerTemplate.querySelector('.innerTemplate').content.cloneNode(true)
+        const innerItem = innerTemplate.querySelector('.innerItem')
+        innerItem.textContent = element
+        innerContainer.appendChild(innerTemplate)
     })
-    
-    //sdocument.querySelector('ul').appendChild(outerTemplate)
-    document.querySelector('ul').appendChild(li).appendChild(ul)
+
+    document.querySelector('.outerContainer').appendChild(outerTemplate)
 });
 
 // ul #
 
 // template *
 //     li
-//     ul 
+//     ul
 
 // template
 //     li
